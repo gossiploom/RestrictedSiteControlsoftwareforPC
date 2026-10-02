@@ -1,0 +1,117 @@
+﻿STEP 1 - CONNECT THE USB
+========================
+
+Insert the USB drive containing:
+
+Block-RestrictedSites.ps1
+Instructions.txt
+
+
+STEP 2 - OPEN POWERSHELL AS ADMINISTRATOR
+==========================================
+
+On the computer that you want to restrict:
+
+1. Open the Start menu.
+2. Search for "Windows PowerShell".
+3. Right-click Windows PowerShell.
+4. Select "Run as administrator".
+5. If Windows asks for permission, select "Yes".
+
+IMPORTANT:
+The PowerShell window should say "Administrator: Windows PowerShell".
+
+Administrator privileges are required because the Windows HOSTS file is
+protected by Windows.
+
+
+STEP 3 - ALLOW THE SCRIPT FOR THIS SESSION
+==========================================
+
+Run this command:
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+PowerShell may display this question:
+
+Do you want to change the execution policy?
+
+Select:
+
+Y
+
+and press Enter.
+
+This change applies only to the current PowerShell session. It does not
+permanently change the computer's execution-policy setting.
+
+
+STEP 4 - INSTALL THE RESTRICTION CONTROL
+========================================
+
+The restriction system will be installed on the computer in:
+
+C:\Program Files\RestrictedSiteControl\
+
+The installation folder may be hidden from normal File Explorer browsing.
+
+The USB copy remains available so the same package can be used on other
+compatible Windows computers.
+
+
+STEP 5 - ACTIVATE BLOCKING
+===========================
+
+Run the Block action using the installed script.
+
+This adds the restricted websites to the Windows HOSTS file and clears the
+Windows DNS client cache.
+
+
+STEP 6 - REMOVE THE RESTRICTION
+===============================
+
+Run the Unblock action using the installed script.
+
+The system will restore the HOSTS file from its original backup.
+
+
+IMPORTANT LIMITATIONS
+=====================
+
+This version uses the Windows HOSTS file.
+
+HOSTS-based blocking is domain based and is not an absolute network-security
+system. Some applications or browsers can potentially bypass HOSTS blocking
+using alternative DNS methods, DNS-over-HTTPS, VPNs, direct IP addresses,
+alternative domains, or services that are not included in the list.
+
+For stronger enforcement, a future version can add Windows Firewall and/or
+DNS-level controls.
+
+
+BACKUP
+======
+
+Before blocking, the system creates a backup of the original HOSTS file:
+
+C:\Windows\System32\drivers\etc\hosts.restricted-backup
+
+Do not delete this backup while the restriction is active.
+
+It is required to restore the original HOSTS file when Unblock is used.
+
+
+PORTABILITY
+===========
+
+The USB package is not tied to one particular computer.
+
+The same Block-RestrictedSites.ps1 can be used on other compatible Windows
+computers.
+
+Each computer receives its own local installation and HOSTS-file backup.
+
+
+END
+===
